@@ -318,12 +318,11 @@ export default function Home() {
             Open to selected freelance projects, direct contracts and senior
             product engineering opportunities.
           </p>
-          <a className="contact-button" href="mailto:your@email.com">
+          <a className="contact-button" href="mailto:v.topcheev@gmail.com">
             Start a conversation <Arrow diagonal />
           </a>
           <p className="contact-note">
-            Replace the email and profile links with your real contact details
-            before publishing.
+            v.topcheev@gmail.com · Based in Europe · Available globally
           </p>
         </section>
       </main>
@@ -335,10 +334,10 @@ export default function Home() {
         </div>
         <p>Senior Front-End / Product Engineer</p>
         <div className="socials" aria-label="Social profiles">
-          <a href="#contact">LinkedIn</a>
-          <a href="#contact">GitHub</a>
-          <a href="#contact">Upwork</a>
-          <a href="#contact">CV</a>
+          <a href="mailto:v.topcheev@gmail.com">Email</a>
+          <a href="https://github.com/TopVV" rel="noreferrer" target="_blank">
+            GitHub
+          </a>
         </div>
         <span>© {new Date().getFullYear()}</span>
       </footer>
