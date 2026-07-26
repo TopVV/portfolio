@@ -518,7 +518,7 @@ footer {
   grid-template-areas:
     "copy details"
     "media media";
-  row-gap: 46px;
+  row-gap: 32px;
 }
 
 .project-copy {
@@ -618,19 +618,18 @@ footer {
 }
 
 .project--provia .project-media {
-  min-height: 510px;
-  padding: 18px 130px 18px 18px;
+  min-height: 0;
+  padding: 44px 72px;
 }
 
 .project--provia .project-media > figure:first-child {
+  width: 100%;
+  max-width: 1080px;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
   overflow: hidden;
   border: 1px solid rgba(228, 125, 149, .3);
-}
-
-.project--provia .project-media-secondary {
-  right: 34px;
-  bottom: 34px;
-  width: 26%;
 }
 
 .project-number {

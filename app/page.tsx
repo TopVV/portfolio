@@ -69,8 +69,6 @@ const projects = [
     primaryImage: "/projects/provia/discovery-home.png",
     primaryAlt:
       "Provia service marketplace discovery page for finding professional service providers",
-    secondaryImage: "/projects/provia/booking-flow.png",
-    secondaryAlt: "Provia booking interface for selecting a date and time",
     liveUrl: "https://provia-murex.vercel.app/",
     sourceUrl: "https://github.com/TopVV/provia",
   },
