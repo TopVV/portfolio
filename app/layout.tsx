@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vadym — Senior React & Next.js Engineer",
+  title: "Vadym Topchieiev — Senior Front-End & Product Engineer",
   description:
     "Senior Front-End and Product Engineer building SaaS products, complex React applications and AI-enabled interfaces.",
   keywords: [

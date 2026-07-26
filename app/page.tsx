@@ -1,3 +1,10 @@
+import Image from "next/image";
+import { StrengthGrid } from "./strength-grid";
+import { FocusSection } from "./focus-section";
+import { RotatingHeadline } from "./rotating-headline";
+import { MagneticLink } from "./magnetic-link";
+import { SectionRail } from "./section-rail";
+
 const Arrow = ({ diagonal = false }: { diagonal?: boolean }) => (
   <span aria-hidden="true">{diagonal ? "↗" : "→"}</span>
 );
@@ -6,26 +13,66 @@ const projects = [
   {
     index: "01",
     title: "OrbitOps",
-    type: "B2B SaaS operations dashboard",
+    type: "SaaS Operations Dashboard",
     description:
-      "A dense operational workspace that turns complex workflows, data and system states into a clear interface teams can act on.",
-    role: "Product engineering · Frontend architecture",
-    stack: ["Next.js", "React", "TypeScript", "Complex UI"],
+      "A production-style B2B SaaS interface for managing customers, recurring revenue, account health and operational workflows.",
+    highlights: [
+      "Responsive operations dashboard",
+      "Searchable, filterable customer workflows",
+      "Typed forms, validation and reliable UI states",
+      "Reusable architecture with end-to-end coverage",
+    ],
+    stack: ["Next.js", "React", "TypeScript", "Material UI", "TanStack Query", "React Hook Form", "Zod", "MUI X Charts", "Storybook", "Playwright"],
     variant: "orbit",
-    problem:
-      "Operations teams need one reliable place to monitor work, filter large datasets and move tasks forward without losing context.",
+    primaryImage: "/projects/orbitops/operations-dashboard.png",
+    primaryAlt:
+      "OrbitOps operations dashboard with navigation, KPI cards, revenue trend and account health data",
+    liveUrl: "https://orbitops-pied.vercel.app/",
+    sourceUrl: "https://github.com/TopVV/orbitops",
   },
   {
     index: "02",
-    title: "AI Review Workbench",
-    type: "AI-enabled review application",
+    title: "VerityFlow",
+    type: "AI Review Workbench",
     description:
-      "A human-in-the-loop workspace for reviewing streamed AI output, validating structured results and keeping people in control.",
-    role: "Product UX · AI integration",
-    stack: ["Next.js", "Streaming", "Structured output", "AI APIs"],
-    variant: "ai",
-    problem:
-      "AI output becomes useful product work only when people can inspect, correct and approve it with confidence.",
+      "An AI-assisted review workspace combining structured analysis, evidence signals and human-in-the-loop decision workflows.",
+    highlights: [
+      "Structured AI outputs validated with Zod",
+      "Source-grounded evidence and explainability",
+      "Approve, edit, reject and re-run workflows",
+      "Keyboard-first review navigation and Cypress coverage",
+    ],
+    stack: ["Next.js", "React", "TypeScript", "Mantine", "TanStack Query", "Zod", "OpenAI integration", "Cypress"],
+    variant: "verity",
+    primaryImage: "/projects/verity-flow/review-workspace.png",
+    primaryAlt:
+      "VerityFlow three-pane review workspace for structured AI analysis and evidence review",
+    secondaryImage: "/projects/verity-flow/evidence-detail.png",
+    secondaryAlt: "VerityFlow evidence detail showing why a result was produced",
+    liveUrl: "https://verity-flow-phi.vercel.app/queue",
+    sourceUrl: "https://github.com/TopVV/verity-flow",
+  },
+  {
+    index: "03",
+    title: "Provia",
+    type: "Service Marketplace & Booking Platform",
+    description:
+      "A responsive professional-services marketplace for discovering providers, checking availability and completing an end-to-end booking flow.",
+    highlights: [
+      "Marketplace search, discovery and category filtering",
+      "Date-aware availability and provider profiles",
+      "Multi-step booking, rescheduling and cancellation",
+      "Accessible mobile-first interactions with Cypress coverage",
+    ],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "React Aria", "TanStack Query", "React Hook Form", "Zod", "date-fns", "Cypress"],
+    variant: "provia",
+    primaryImage: "/projects/provia/discovery-home.png",
+    primaryAlt:
+      "Provia service marketplace discovery page for finding professional service providers",
+    secondaryImage: "/projects/provia/booking-flow.png",
+    secondaryAlt: "Provia booking interface for selecting a date and time",
+    liveUrl: "https://provia-murex.vercel.app/",
+    sourceUrl: "https://github.com/TopVV/provia",
   },
 ];
 
@@ -69,10 +116,12 @@ export default function Home() {
           <a href="#expertise">Expertise</a>
           <a href="#about">About</a>
         </nav>
-        <a className="header-cta" href="#contact">
+        <MagneticLink className="header-cta" href="#contact">
           Let’s talk <Arrow />
-        </a>
+        </MagneticLink>
       </header>
+
+      <SectionRail />
 
       <main id="main">
         <section className="hero" id="top">
@@ -81,22 +130,19 @@ export default function Home() {
             <span className="status-dot" />
             Available for select freelance projects
           </div>
-          <h1>
-            Engineering <span>digital products</span>
-            <br /> built to perform.
-          </h1>
+          <RotatingHeadline />
           <div className="hero-bottom">
             <p>
               Senior Front-End &amp; Product Engineer building SaaS products,
               complex React applications and AI-enabled interfaces.
             </p>
             <div className="hero-actions">
-              <a className="button button-primary" href="#work">
+              <MagneticLink className="button button-primary" href="#work">
                 Explore my work <Arrow />
-              </a>
-              <a className="button button-ghost" href="#contact">
+              </MagneticLink>
+              <MagneticLink className="button button-ghost" href="#contact">
                 Start a conversation
-              </a>
+              </MagneticLink>
             </div>
           </div>
           <div className="hero-meta" aria-label="Core technologies">
@@ -116,7 +162,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section projects" id="work">
+        <FocusSection className="section projects" id="work">
           <div className="section-heading">
             <div>
               <span className="section-index">01 / Selected work</span>
@@ -130,107 +176,71 @@ export default function Home() {
 
           <div className="project-list">
             {projects.map((project) => (
-              <article className="project" key={project.title}>
-                <div className={`project-visual ${project.variant}`}>
-                  <div className="mock-browser">
-                    <div className="mock-top">
-                      <span />
-                      <span />
-                      <span />
-                      <b>{project.title}</b>
-                    </div>
-                    {project.variant === "orbit" ? (
-                      <div className="orbit-ui">
-                        <aside>
-                          <strong>ORBIT</strong>
-                          <i />
-                          <i />
-                          <i />
-                          <i />
-                        </aside>
-                        <div className="dashboard">
-                          <small>OPERATIONS / OVERVIEW</small>
-                          <h3>Command center</h3>
-                          <div className="kpis">
-                            <span />
-                            <span />
-                            <span />
-                          </div>
-                          <div className="chart">
-                            <b />
-                          </div>
-                          <div className="rows">
-                            <i />
-                            <i />
-                            <i />
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="ai-ui">
-                        <aside>
-                          <strong>REVIEW</strong>
-                          <i />
-                          <i />
-                          <i />
-                        </aside>
-                        <div className="review">
-                          <small>AI REVIEW / SESSION 024</small>
-                          <h3>Validate structured output</h3>
-                          <div className="review-grid">
-                            <div>
-                              <i />
-                              <i />
-                              <i />
-                              <i />
-                            </div>
-                            <div>
-                              <span />
-                              <span />
-                              <button type="button" tabIndex={-1}>
-                                Approve
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <span className="project-number">{project.index}</span>
-                </div>
+              <article className={`project project--${project.variant}`} key={project.title}>
                 <div className="project-copy">
                   <div className="project-title">
                     <div>
+                      <span className="project-number">{project.index}</span>
                       <p>{project.type}</p>
                       <h3>{project.title}</h3>
                     </div>
-                    <a href="#contact" aria-label={`Ask about ${project.title}`}>
-                      <Arrow diagonal />
-                    </a>
                   </div>
                   <p className="project-description">{project.description}</p>
-                  <dl>
-                    <div>
-                      <dt>Problem</dt>
-                      <dd>{project.problem}</dd>
-                    </div>
-                    <div>
-                      <dt>My role</dt>
-                      <dd>{project.role}</dd>
-                    </div>
-                  </dl>
-                  <ul aria-label={`${project.title} technologies`}>
+                </div>
+                <div className="project-media" data-project-media>
+                  <figure>
+                    <Image
+                      alt={project.primaryAlt}
+                      fill
+                      loading="lazy"
+                      src={project.primaryImage}
+                      sizes="(max-width: 960px) 100vw, 60vw"
+                    />
+                  </figure>
+                  {project.secondaryImage ? (
+                    <figure className="project-media-secondary">
+                      <Image
+                        alt={project.secondaryAlt ?? ""}
+                        fill
+                        loading="lazy"
+                        src={project.secondaryImage}
+                        sizes="(max-width: 640px) 38vw, 28vw"
+                      />
+                    </figure>
+                  ) : null}
+                </div>
+                <div className="project-details">
+                  <div>
+                    <h4>Engineering highlights</h4>
+                    <ul className="project-highlights">
+                      {project.highlights.map((highlight) => (
+                        <li key={highlight}>{highlight}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>Stack</h4>
+                    <ul className="project-stack" aria-label={`${project.title} technologies`}>
                     {project.stack.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
+                  </div>
+                  <div className="project-actions">
+                    <a href={project.liveUrl} rel="noreferrer" target="_blank">
+                      Live demo <Arrow diagonal />
+                    </a>
+                    <a href={project.sourceUrl} rel="noreferrer" target="_blank">
+                      GitHub <Arrow diagonal />
+                    </a>
+                  </div>
                 </div>
               </article>
             ))}
           </div>
-        </section>
+        </FocusSection>
 
-        <section className="section expertise" id="expertise">
+        <FocusSection className="section expertise" id="expertise">
           <div className="section-heading">
             <div>
               <span className="section-index">02 / Engineering strengths</span>
@@ -242,18 +252,10 @@ export default function Home() {
               trustworthy.
             </p>
           </div>
-          <div className="strength-grid">
-            {strengths.map((item) => (
-              <article key={item.title}>
-                <span>{item.n}</span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
+          <StrengthGrid strengths={strengths} />
+        </FocusSection>
 
-        <section className="section experience">
+        <FocusSection className="section experience" id="experience">
           <div className="experience-intro">
             <span className="section-index">03 / Experience</span>
             <h2>Senior engineering for products with real complexity.</h2>
@@ -278,9 +280,9 @@ export default function Home() {
               )}
             </div>
           </div>
-        </section>
+        </FocusSection>
 
-        <section className="section about" id="about">
+        <FocusSection className="section about" id="about">
           <div>
             <span className="section-index">04 / About</span>
             <h2>
@@ -309,22 +311,25 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </FocusSection>
 
-        <section className="contact" id="contact">
+        <FocusSection className="contact" id="contact">
           <span className="section-index">Have a product to build?</span>
           <h2>Let’s make it<br />work beautifully.</h2>
           <p>
             Open to selected freelance projects, direct contracts and senior
             product engineering opportunities.
           </p>
-          <a className="contact-button" href="mailto:v.topcheev@gmail.com">
+          <MagneticLink
+            className="contact-button"
+            href="mailto:v.topcheev@gmail.com"
+          >
             Start a conversation <Arrow diagonal />
-          </a>
+          </MagneticLink>
           <p className="contact-note">
             v.topcheev@gmail.com · Based in Europe · Available globally
           </p>
-        </section>
+        </FocusSection>
       </main>
 
       <footer>
@@ -337,6 +342,26 @@ export default function Home() {
           <a href="mailto:v.topcheev@gmail.com">Email</a>
           <a href="https://github.com/TopVV" rel="noreferrer" target="_blank">
             GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/topvv/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://www.upwork.com/freelancers/~0101e19e91fdcb3443?mp_source=share"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Upwork
+          </a>
+          <a href="https://t.me/top_v_v" rel="noreferrer" target="_blank">
+            Telegram
+          </a>
+          <a href="/Vadym_Topchieiev_Senior_Front_End_Engineer.pdf" download>
+            CV
           </a>
         </div>
         <span>© {new Date().getFullYear()}</span>
