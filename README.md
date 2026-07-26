@@ -33,3 +33,9 @@ https://portfolio-topaz-theta-47.vercel.app/
 ```bash
 npm install
 npm run dev
+```
+
+```bash
+npm run lint
+npm run build
+```
