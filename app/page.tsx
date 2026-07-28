@@ -4,6 +4,7 @@ import { FocusSection } from "./focus-section";
 import { RotatingHeadline } from "./rotating-headline";
 import { MagneticLink } from "./magnetic-link";
 import { SectionRail } from "./section-rail";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const Arrow = ({ diagonal = false }: { diagonal?: boolean }) => (
   <span aria-hidden="true">{diagonal ? "↗" : "→"}</span>
@@ -364,6 +365,7 @@ export default function Home() {
         </div>
         <span>© {new Date().getFullYear()}</span>
       </footer>
+      <SpeedInsights/>
     </>
   );
 }
